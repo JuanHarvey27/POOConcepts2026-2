@@ -1,6 +1,6 @@
 ﻿namespace Backend;
 
-public class Hour
+public class Time
 {
     //Fields
     private int _hour;
@@ -9,35 +9,35 @@ public class Hour
     private int _millisecond;
 
     //Constructors
-    public Hour()
+    public Time()
     {
         Hour = 0;
         Minute = 0;
         Second = 0;
         Millisecond = 0;
     }
-    public Hour(int hour)
+    public Time(int hour)
     {
         Hour = hour;
         Minute = 0;
         Second = 0;
         Millisecond = 0;
     }
-    public Hour(int hour, int minute)
+    public Time(int hour, int minute)
     {
         Hour = hour;
         Minute = minute;
         Second = 0;
         Millisecond = 0;
     }
-    public Hour(int hour, int minute, int second)
+    public Time(int hour, int minute, int second)
     {
         Hour = hour;
         Minute = minute;
         Second = second;
         Millisecond = 0;
     }
-    public Hour(int hour, int minute, int second, int millisecond)
+    public Time(int hour, int minute, int second, int millisecond)
     {
         Hour = hour;
         Minute = minute;
