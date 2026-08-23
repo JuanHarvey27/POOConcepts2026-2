@@ -68,7 +68,7 @@ public class Time
     {
         string period = Hour < 12 ? "AM" : "PM";
         int DisplayHour = Hour % 12;
-        return $"{Hour:D2}:{Minute:D2}:{Second:D2}.{Millisecond:D3}";
+        return $"{DisplayHour:D2}:{Minute:D2}:{Second:D2}.{Millisecond:D3} {period}";
     }
     public int ToMilliseconds()
     {
@@ -81,6 +81,24 @@ public class Time
     public int ToMinutes()
     {
         return ToSeconds() / 60;
+    }
+    public Time Add(Time other)
+    {
+        int totalMilliseconds = ToMilliseconds() + other.ToMilliseconds();
+        int newMillisecond = totalMilliseconds % 1000;
+        int totalSeconds = totalMilliseconds / 1000;
+        int newSecond = totalSeconds % 60;
+        int totalMinutes = totalSeconds / 60;
+        int newMinute = totalMinutes % 60;
+        int totalHours = totalMinutes / 60;
+        int newHour = totalHours % 24; // The % 24 ensures the hour wraps around to 0-23
+        return new Time(newHour, newMinute, newSecond, newMillisecond);
+    }
+    public bool IsOtherDay(Time other)
+    {
+        int totalMilliseconds = ToMilliseconds() + other.ToMilliseconds();
+        int totalHours = totalMilliseconds / 3600000; // 3600000 milliseconds = 1 hour
+        return totalHours >= 24;
     }
     //Private Methods
     private int ValidHour(int hour)
