@@ -66,9 +66,22 @@ public class Time
     //Public Methods
     public override string ToString()
     {
+        string period = Hour < 12 ? "AM" : "PM";
+        int DisplayHour = Hour % 12;
         return $"{Hour:D2}:{Minute:D2}:{Second:D2}.{Millisecond:D3}";
     }
-
+    public int ToMilliseconds()
+    {
+        return ((Hour * 3600) + (Minute * 60) + Second)*1000 + Millisecond;
+    }
+    public int ToSeconds()
+    {
+        return ToMilliseconds() / 1000;
+    }
+    public int ToMinutes()
+    {
+        return ToSeconds() / 60;
+    }
     //Private Methods
     private int ValidHour(int hour)
     {
